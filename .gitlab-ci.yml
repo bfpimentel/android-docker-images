@@ -8,7 +8,7 @@ docker:
   tags:
     - java
   only:
-    - /^v(\d+\.)(\d+\.)(\d+)/
+    - /^openjdk8-(\d+\.)(\d+\.)(\d+)/
   except:
     - merge_requests
     - branches
