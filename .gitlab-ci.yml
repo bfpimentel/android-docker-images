@@ -17,5 +17,5 @@ docker:
     - mkdir $HOME/.docker
     - touch $HOME/.docker/config.json
     - echo $DOCKER_AUTH_CONFIG > $HOME/.docker/config.json
-    - docker build -t docker-nexus.uds.com.br/java/openjdk8-android
+    - docker build -t docker-nexus.uds.com.br/java/openjdk8-android .
     - docker push docker-nexus.uds.com.br/java/openjdk8-android
