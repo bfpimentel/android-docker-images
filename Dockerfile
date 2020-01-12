@@ -11,7 +11,7 @@ ENV SONAR_SCANNER_HOME "/usr/local/sonar-scanner"
 RUN mkdir "$ANDROID_HOME" .android && \
     cd "$ANDROID_HOME" && \
     curl -o sdk.zip "https://dl.google.com/android/repository/sdk-tools-linux-${SDK_TOOLS_VERSION}.zip" && \
-    unzip sdk.zip -q && \
+    unzip -q sdk.zip && \
     rm sdk.zip && \
     mkdir "$ANDROID_HOME/licenses" || true && \
     echo "24333f8a63b6825ea9c5514f83c2829b004d1fee" > "$ANDROID_HOME/licenses/android-sdk-license" && \
@@ -34,7 +34,7 @@ RUN command curl -sSL https://rvm.io/mpapis.asc | gpg --import && \
     gem install fastlane -NV
 
 RUN curl -o sonar-scanner.zip "https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.2.0.1873-linux.zip" && \
-    unzip sonar-scanner.zip -q && \
+    unzip -q sonar-scanner.zip && \
     rm sonar-scanner.zip && \
     mkdir ${SONAR_SCANNER_HOME} && \
     mv sonar-scanner-4.2.0.1873-linux/* ${SONAR_SCANNER_HOME} && \
