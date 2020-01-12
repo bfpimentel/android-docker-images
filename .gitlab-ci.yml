@@ -1,0 +1,19 @@
+image: docker-nexus.uds.com.br/java/jdk8-docker18
+
+stages:
+  - build
+
+docker:
+  stage: build
+  tags:
+    - java
+  only:
+    - /^v(\d+\.)(\d+\.)(\d+)/
+  except:
+    - merge_requests
+    - branches
+    - master
+  script:
+    - echo $DOCKER_AUTH_CONFIG > ~/.docker/config.json
+    - docker build -t docker-nexus.uds.com.br/java/openjdk8-android
+    - docker push docker-nexus.uds.com.br/java/openjdk8-android
