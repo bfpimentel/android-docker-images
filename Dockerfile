@@ -34,7 +34,8 @@ RUN command curl -sSL https://rvm.io/mpapis.asc | gpg --import && \
     source /usr/local/rvm/scripts/rvm && \
     rvm install 2.6.5 && \
     gem install bundler && \
-    gem install fastlane -NV
+    gem install fastlane -NV && \
+    rvm use 2.6.5
 
 RUN curl -o sonar-scanner.zip "https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.2.0.1873-linux.zip" && \
     unzip -q sonar-scanner.zip && \
