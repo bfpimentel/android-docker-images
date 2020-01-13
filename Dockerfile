@@ -2,13 +2,13 @@ FROM openjdk:8-jdk
 
 USER root
 
+SHELL ["/bin/bash", "-c"]
+
 ENV BUILD_TOOLS_VERSION "29.0.2"
 ENV SDK_TOOLS_API "29"
 ENV SDK_TOOLS_VERSION "4333796"
 ENV ANDROID_HOME "/usr/local/android-sdk"
 ENV SONAR_SCANNER_HOME "/usr/local/sonar-scanner"
-
-RUN /bin/bash
 
 RUN mkdir "$ANDROID_HOME" .android && \
     cd "$ANDROID_HOME" && \
