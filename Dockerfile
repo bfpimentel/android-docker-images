@@ -40,6 +40,5 @@ RUN curl -o sonar-scanner.zip "https://binaries.sonarsource.com/Distribution/son
     rm sonar-scanner.zip && \
     mkdir ${SONAR_SCANNER_HOME} && \
     mv sonar-scanner-4.2.0.1873-linux/* ${SONAR_SCANNER_HOME} && \
-    rm sonar-scanner-4.2.0.1873-linux && \
     export PATH="$PATH:${SONAR_SCANNER_HOME}/bin" && \
     sonar-scanner -v
