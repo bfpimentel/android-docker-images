@@ -28,7 +28,7 @@ RUN apt-get update && \
 RUN command curl -sSL https://rvm.io/mpapis.asc | gpg --import && \
     command curl -sSL https://rvm.io/pkuczynski.asc | gpg --import && \
     curl -sSL https://get.rvm.io | bash -s stable --ruby && \
-    source /usr/local/rvm/scripts/rvm && \
+    . /usr/local/rvm/scripts/rvm && \
     rvm install 2.6.5 && \
     gem install bundler && \
     gem install fastlane -NV
