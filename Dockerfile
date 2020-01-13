@@ -9,6 +9,7 @@ ENV SDK_TOOLS_API "29"
 ENV SDK_TOOLS_VERSION "4333796"
 ENV ANDROID_HOME "/usr/local/android-sdk"
 ENV SONAR_SCANNER_HOME "/usr/local/sonar-scanner"
+ENV PATH "$PATH:${SONAR_SCANNER_HOME}/bin"
 
 RUN mkdir "$ANDROID_HOME" .android && \
     cd "$ANDROID_HOME" && \
@@ -40,5 +41,4 @@ RUN curl -o sonar-scanner.zip "https://binaries.sonarsource.com/Distribution/son
     rm sonar-scanner.zip && \
     mkdir ${SONAR_SCANNER_HOME} && \
     mv sonar-scanner-4.2.0.1873-linux/* ${SONAR_SCANNER_HOME} && \
-    export PATH="$PATH:${SONAR_SCANNER_HOME}/bin" && \
     sonar-scanner -v
