@@ -1,17 +1,11 @@
-image: docker:latest
-
-variables:
-  DOCKER_DRIVER: overlay2
-
-services:
-  - docker:dind
+image: docker-nexus.uds.com.br/java/jdk8-docker18
 
 before_script:
-  - mkdir $HOME/.docker
-  - touch $HOME/.docker/config.json
-  - echo $DOCKER_AUTH_CONFIG > $HOME/.docker/config.json
+  # - mkdir $HOME/.docker
+  # - touch $HOME/.docker/config.json
+  # - echo $DOCKER_AUTH_CONFIG > $HOME/.docker/config.json
   - docker version
-  - docker info
+  - docker build
 
 stages:
   - build
@@ -41,4 +35,5 @@ docker push:
     - branches
     - master
   script:
+    - docker login docker-nexus.uds.com.br -u gitlab -p 'SO-8r$dE$IYe'
     - docker push docker-nexus.uds.com.br/java/openjdk8-android
