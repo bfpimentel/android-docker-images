@@ -1,9 +1,9 @@
 image: docker-nexus.uds.com.br/java/jdk8-docker18
 
-# before_script:
-# - mkdir $HOME/.docker
-# - touch $HOME/.docker/config.json
-# - echo $DOCKER_AUTH_CONFIG > $HOME/.docker/config.json
+before_script:
+  - mkdir $HOME/.docker
+  - touch $HOME/.docker/config.json
+  - echo $DOCKER_AUTH_CONFIG > $HOME/.docker/config.json
 
 stages:
   - build
@@ -12,7 +12,7 @@ stages:
 docker build:
   stage: build
   tags:
-    - java
+    - python
   only:
     - /^openjdk8-(\d+\.)(\d+\.)(\d+)/
   except:
@@ -25,7 +25,7 @@ docker build:
 docker push:
   stage: push
   tags:
-    - java
+    - python
   only:
     - /^openjdk8-(\d+\.)(\d+\.)(\d+)/
   except:
@@ -33,5 +33,4 @@ docker push:
     - branches
     - master
   script:
-    - docker login docker-nexus.uds.com.br -u gitlab -p 'SO-8r$dE$IYe'
     - docker push docker-nexus.uds.com.br/java/openjdk8-android
