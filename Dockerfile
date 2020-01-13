@@ -1,5 +1,7 @@
 FROM openjdk:8-jdk
 
+ENTRYPOINT [ "/bin/bash" ]
+
 USER root
 
 ENV BUILD_TOOLS_VERSION "29.0.2"
@@ -28,7 +30,7 @@ RUN apt-get update && \
 RUN command curl -sSL https://rvm.io/mpapis.asc | gpg --import && \
     command curl -sSL https://rvm.io/pkuczynski.asc | gpg --import && \
     curl -sSL https://get.rvm.io | bash -s stable --ruby && \
-    . /usr/local/rvm/scripts/rvm && \
+    source /usr/local/rvm/scripts/rvm && \
     rvm install 2.6.5 && \
     gem install bundler && \
     gem install fastlane -NV
