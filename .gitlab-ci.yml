@@ -1,4 +1,4 @@
-image: docker-nexus.uds.com.br/java/jdk8-docker18
+image: docker:latest
 
 variables:
   DOCKER_DRIVER: overlay2
