@@ -1,5 +1,18 @@
 image: docker-nexus.uds.com.br/java/jdk8-docker18
 
+variables:
+  DOCKER_DRIVER: overlay2
+
+services:
+  - docker:dind
+
+before_script:
+  - mkdir $HOME/.docker
+  - touch $HOME/.docker/config.json
+  - echo $DOCKER_AUTH_CONFIG > $HOME/.docker/config.json
+  - docker version
+  - docker info
+
 stages:
   - build
   - push
@@ -28,7 +41,4 @@ docker push:
     - branches
     - master
   script:
-    - mkdir $HOME/.docker
-    - touch $HOME/.docker/config.json
-    - echo $DOCKER_AUTH_CONFIG > $HOME/.docker/config.json
     - docker push docker-nexus.uds.com.br/java/openjdk8-android
