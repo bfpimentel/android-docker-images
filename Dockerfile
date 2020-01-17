@@ -8,7 +8,6 @@ ENV BUILD_TOOLS_VERSION "29.0.2"
 ENV SDK_TOOLS_API "29"
 ENV SDK_TOOLS_VERSION "4333796"
 ENV ANDROID_HOME "/usr/local/android-sdk"
-ENV SONAR_SCANNER_HOME "/usr/local/sonar-scanner"
 ENV PATH "$PATH:${SONAR_SCANNER_HOME}/bin"
 
 RUN mkdir "$ANDROID_HOME" .android && \
@@ -17,8 +16,9 @@ RUN mkdir "$ANDROID_HOME" .android && \
     unzip -q sdk.zip && \
     rm sdk.zip && \
     mkdir "$ANDROID_HOME/licenses" || true && \
-    echo "24333f8a63b6825ea9c5514f83c2829b004d1fee" > "$ANDROID_HOME/licenses/android-sdk-license" && \
-    $ANDROID_HOME/tools/bin/sdkmanager --update | grep -v = || true && \
+    echo "24333f8a63b6825ea9c5514f83c2829b004d1fee" > "$ANDROID_HOME/licenses/android-sdk-license"
+
+RUN $ANDROID_HOME/tools/bin/sdkmanager --update | grep -v = || true && \
     $ANDROID_HOME/tools/bin/sdkmanager "build-tools;${BUILD_TOOLS_VERSION}" \
     "platforms;android-${SDK_TOOLS_API}" \
     "platform-tools" | grep -v = || true
@@ -36,10 +36,3 @@ RUN command curl -sSL https://rvm.io/mpapis.asc | gpg --import && \
     gem install bundler && \
     gem install fastlane -NV && \
     rvm use 2.6.5
-
-RUN curl -o sonar-scanner.zip "https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.2.0.1873-linux.zip" && \
-    unzip -q sonar-scanner.zip && \
-    rm sonar-scanner.zip && \
-    mkdir ${SONAR_SCANNER_HOME} && \
-    mv sonar-scanner-4.2.0.1873-linux/* ${SONAR_SCANNER_HOME} && \
-    sonar-scanner -v
