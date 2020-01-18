@@ -8,7 +8,6 @@ ENV BUILD_TOOLS_VERSION "29.0.2"
 ENV SDK_TOOLS_API "29"
 ENV SDK_TOOLS_VERSION "4333796"
 ENV ANDROID_HOME "/usr/local/android-sdk"
-ENV PATH "$PATH:${SONAR_SCANNER_HOME}/bin"
 
 RUN mkdir "$ANDROID_HOME" .android && \
     cd "$ANDROID_HOME" && \
@@ -35,4 +34,6 @@ RUN command curl -sSL https://rvm.io/mpapis.asc | gpg --import && \
     rvm install 2.6.5 && \
     gem install bundler && \
     gem install fastlane -NV && \
-    rvm use 2.6.5
+    rvm --default use 2.6.5
+
+RUN echo "source /usr/local/rvm/scripts/rvm" >> ~/.bashrc
